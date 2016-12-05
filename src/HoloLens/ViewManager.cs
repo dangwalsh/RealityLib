@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !UNITY_EDITOR
+using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
@@ -10,9 +11,20 @@ using System.Collections.Generic;
 
 namespace Reality.HoloLens
 {
+    public delegate void FileChangedEventHandler(object sender, EventArgs e);
     public static class ViewManager
     {
-        public static string FilePath;
+        public static event FileChangedEventHandler FileChangedEvent;
+
+        public static string FilePath
+        {
+            get { return filePath; }
+            set
+            {
+                filePath = value;
+                OnFileChangedEvent(FilePath, new EventArgs() { });
+            }
+        }
         public static async Task SwitchViews()
         {
             if (view3d == null) view3d = CoreApplication.MainView;
@@ -115,7 +127,14 @@ namespace Reality.HoloLens
             }
         }
 
+        static void OnFileChangedEvent(object sender, EventArgs e)
+        {
+            FileChangedEvent?.Invoke(sender, e);
+        }
+
         static CoreApplicationView view3d;
         static CoreApplicationView view2d;
+        static string filePath = "";
     }
 }
+#endif

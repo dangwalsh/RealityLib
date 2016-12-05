@@ -4,6 +4,7 @@ using static Reality.ObjReader.Utils;
 
 namespace Reality.ObjReader
 {
+    // TODO: need to implement setting of scale and origin of texture maps
     internal class Material
     {
         public INode Parent { get; }
@@ -12,8 +13,18 @@ namespace Reality.ObjReader
         public Vec4 Ka { get; set; }
         public Vec4 Ks { get; set; }
         public string MapKd { get; set; }
+        public Vec3 MapKdScale { get; set; }
+        public Vec2 MapKdOrigin { get; set; }
         public string MapKa { get; set; }
+        public Vec3 MapKaScale { get; set; }
+        public Vec2 MapKaOrigin { get; set; }
         public string MapKs { get; set; }
+        public Vec3 MapKsScale { get; set; }
+        public Vec2 MapKsOrigin { get; set; }
+        public string MapBump { get; set; }
+        public Vec3 MapBumpScale { get; set; }
+        public Vec2 MapBumpOrigin { get; set; }
+
         public Material(INode parent, string name)
         {
             this.Parent = parent;
@@ -60,6 +71,12 @@ namespace Reality.ObjReader
         {
             var path = ConvertToString(tokens);
             MapKs = path;
+        }
+
+        public void AddBumpMap(string[] tokens)
+        {
+            var path = ConvertToString(tokens);
+            MapBump = path;
         }
     }
 }

@@ -82,6 +82,30 @@
             return child.Material.MapKd;
         }
 
+        public static string GetMapBumpOfObject(int index)
+        {
+            var child = context.Children[index] as Node;
+            return child.Material.MapBump;
+        }
+
+        public static float[] GetScaleOfMapOfObject(string map, int index)
+        {
+            var child = context.Children[index] as Node;
+            switch(map)
+            {
+                case "Kd":
+                    return child.Material.MapKdScale;
+                case "Ka":
+                    return child.Material.MapKaScale;
+                case "Ks":
+                    return child.Material.MapKsScale;
+                case "Bump":
+                    return child.Material.MapBumpScale;
+                default:
+                    return new float[] { 1.0f, 1.0f, 1.0f };
+            }
+        }
+
         private static int GetRoot(string filename)
         {
             count = 0;

@@ -139,6 +139,10 @@ namespace Reality.ObjReader
                         if (current == null) break;
                         current.AddKsMap(tokens);
                         break;
+                    case "map_bump":
+                        if (current == null) break;
+                        current.AddBumpMap(tokens);
+                        break;
                     default:
                         break;
                 }
