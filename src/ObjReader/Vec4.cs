@@ -8,7 +8,7 @@ namespace Reality.ObjReader
 
         public Vec4()
         {
-            this.data = new float[4];
+            this.data = new float[4] { 0.0f, 0.0f, 0.0f, 0.0f };
         }
         
         public Vec4(float f1, float f2, float f3, float f4)

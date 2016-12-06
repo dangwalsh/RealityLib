@@ -46,46 +46,38 @@
             return child.UVIndex.ToArray();
         }
 
-        public static float[] GetKdOfObject(int index)
+        public static float[] GetColorOfChannelOfObject(string channel, int index)
         {
             var child = context.Children[index] as Node;
-            return child.Material.Kd;
+            switch(channel)
+            {
+                case "Diffuse":
+                    return child.Material.Kd;
+                case "Ambient":
+                    return child.Material.Ka;
+                case "Specular":
+                    return child.Material.Ks;
+                default:
+                    return null;
+            }
         }
 
-        public static float[] GetKaOfObject(int index)
+        public static string GetPathOfMapOfObject(string map, int index)
         {
             var child = context.Children[index] as Node;
-            return child.Material.Kd;
-        }
-
-        public static float[] GetKsOfObject(int index)
-        {
-            var child = context.Children[index] as Node;
-            return child.Material.Kd;
-        }
-
-        public static string GetMapKdOfObject(int index)
-        {
-            var child = context.Children[index] as Node;
-            return child.Material.MapKd;
-        }
-
-        public static string GetMapKaOfObject(int index)
-        {
-            var child = context.Children[index] as Node;
-            return child.Material.MapKd;
-        }
-
-        public static string GetMapKsOfObject(int index)
-        {
-            var child = context.Children[index] as Node;
-            return child.Material.MapKd;
-        }
-
-        public static string GetMapBumpOfObject(int index)
-        {
-            var child = context.Children[index] as Node;
-            return child.Material.MapBump;
+            switch(map)
+            {
+                case "Diffuse":
+                    return child.Material.MapKd.Path;
+                case "Ambient":
+                    return child.Material.MapKa.Path;
+                case "Specular":
+                    return child.Material.MapKs.Path;
+                case "Bump":
+                    return child.Material.MapBump.Path;
+                default:
+                    return null;
+            }
         }
 
         public static float[] GetScaleOfMapOfObject(string map, int index)
@@ -93,16 +85,16 @@
             var child = context.Children[index] as Node;
             switch(map)
             {
-                case "Kd":
-                    return child.Material.MapKdScale;
-                case "Ka":
-                    return child.Material.MapKaScale;
-                case "Ks":
-                    return child.Material.MapKsScale;
+                case "Diffuse":
+                    return child.Material.MapKd.Scale;
+                case "Ambient":
+                    return child.Material.MapKa.Scale;
+                case "Specular":
+                    return child.Material.MapKs.Scale;
                 case "Bump":
-                    return child.Material.MapBumpScale;
+                    return child.Material.MapBump.Scale;
                 default:
-                    return new float[] { 1.0f, 1.0f, 1.0f };
+                    return null;
             }
         }
 

@@ -59,7 +59,6 @@ namespace Reality.ObjReader
 
         public static string ConvertToString(string[] tokens)
         {
-            tokens = tokens.Skip(1).ToArray();
             return string.Join(" ", tokens);
         }
 

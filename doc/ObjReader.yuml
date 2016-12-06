@@ -1,0 +1,14 @@
+// {type:class}
+// {direction:leftToRight}
+[Facade]
+[Reader]
+[INode]
+[Context]
+[Node]
+[NodeType]
+[Material]
+[Texture]
+[Vec2]
+[Vec3]
+[Vec4]
+[Utils]
