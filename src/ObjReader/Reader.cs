@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -87,10 +88,11 @@ namespace Reality.ObjReader
                             .AddIndices(tokens);
                         break;
                     case "usemtl":
-                        context.Children
-                            .OfType<Node>()
-                            .Last()
-                            .AddMaterial(tokens);
+                        // context.Children
+                        //     .OfType<Node>()
+                        //     .Last()
+                        //     .AddMaterial(tokens);
+                        IndexMaterialName(tokens);
                         break;
                     case "mtllib":
                         context.AddMaterialLibrary(tokens);
@@ -100,10 +102,19 @@ namespace Reality.ObjReader
                 }
             }
             context.Center();
+            context.AddMaterials(materialNames);
             return context;
+        }
+
+        static void IndexMaterialName(string[] tokens)
+        {
+            tokens = tokens.Skip(1).ToArray();
+            var name = string.Join(" ", tokens);
+            materialNames.Add(name);
         }
 
         private static string filepath;
         private static string directory;
+        private static List<string> materialNames = new List<string>();
     }
 }

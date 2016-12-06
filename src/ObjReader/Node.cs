@@ -45,6 +45,13 @@ namespace Reality.ObjReader
                 .FirstOrDefault(m => m.Name == name);
         }
 
+        public virtual void AddMaterial(string name)
+        {
+            var context = this.Parent as Context;
+            this.Material = context.Materials
+                .FirstOrDefault(m => m.Name == name);
+        }
+
         public virtual void AddIndices(string[] tokens)
         {
             tokens = tokens.Skip(1).ToArray();

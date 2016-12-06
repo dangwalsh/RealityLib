@@ -90,6 +90,15 @@ namespace Reality.ObjReader
             this.MaterialLibrary = string.Join(" ", tokens);
         }
 
+        public virtual void AddMaterials(List<string> materials)
+        {
+            for (int i = 0; i < this.Children.Count; ++i)
+            {
+                var node = this.Children[i] as Node;
+                node.AddMaterial(materials[i]);
+            }
+        }
+
         protected virtual Material AddMaterial(string[] tokens)
         {
             tokens = tokens.Skip(1).ToArray();
