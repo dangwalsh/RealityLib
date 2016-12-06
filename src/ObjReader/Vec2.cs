@@ -4,8 +4,6 @@ namespace Reality.ObjReader
 {
     public class Vec2
     {
-        private float[] data { get; set; }
-
         public Vec2()
         {
             data = new float[2] { 0.0f, 0.0f };
@@ -32,19 +30,21 @@ namespace Reality.ObjReader
             }
         }
 
-        public static implicit operator float[](Vec2 rhs)
+        public static implicit operator float[] (Vec2 rhs)
         {
-            return new float[]{rhs[0], rhs[1]};
+            return new float[] { rhs[0], rhs[1] };
         }
 
         public static float[] operator +(Vec2 lhs, float rhs)
         {
-            return new float[]{lhs[0], lhs[1], rhs};
+            return new float[] { lhs[0], lhs[1], rhs };
         }
 
         public static implicit operator Vec2(float[] rhs)
         {
-            return new Vec2 (rhs[0], rhs[1]);
+            return new Vec2(rhs[0], rhs[1]);
         }
+
+        private float[] data { get; set; }
     }
 }

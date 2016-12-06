@@ -5,7 +5,6 @@ namespace Reality.ObjReader
 {
     internal class Reader
     {
-        static string filepath;
         public static string Filepath
         {
             get { return filepath; }
@@ -16,7 +15,6 @@ namespace Reality.ObjReader
             }
         }
 
-        static string directory;
         public static string Directory
         {
             get { return directory; }
@@ -104,5 +102,8 @@ namespace Reality.ObjReader
             context.Center();
             return context;
         }
+
+        private static string filepath;
+        private static string directory;
     }
 }

@@ -1,22 +1,60 @@
-using System;
 using System.Linq;
 
 using static Reality.ObjReader.Utils;
 
 namespace Reality.ObjReader
 {
-    // TODO: need to implement setting of scale and origin of texture maps
     internal class Material
     {
+        /// <summary>
+        /// Owner of the material.
+        /// </summary>
         public INode Parent { get; }
+
+        /// <summary>
+        /// Name of the material.
+        /// </summary>
         public string Name { get; }
-        public Vec4 Kd { get; set; }
-        public Vec4 Ka { get; set; }
-        public Vec4 Ks { get; set; }
-        public Texture MapKd { get; set; }
-        public Texture MapKa { get; set; }
-        public Texture MapKs { get; set; }
-        public Texture MapBump { get; set; }
+
+        /// <summary>
+        /// Diffuse color value (rgba).
+        /// </summary>
+        public Vec4 Kd { get; private set; }
+
+        /// <summary>
+        /// Ambient color value (rgba).
+        /// </summary>
+        public Vec4 Ka { get; private set; }
+
+        /// <summary>
+        /// Specular color value (rgba).
+        /// </summary>
+        public Vec4 Ks { get; private set; }
+
+        /// <summary>
+        /// Specular exponent (focus of the hilight).
+        /// </summary>
+        public float Ns { get; private set; }
+
+        /// <summary>
+        /// Diffuse texture map.
+        /// </summary>
+        public Texture MapKd { get; private set; }
+
+        /// <summary>
+        /// Ambient texture map.
+        /// </summary>
+        public Texture MapKa { get; private set; }
+
+        /// <summary>
+        /// Specular texture map.
+        /// </summary>
+        public Texture MapKs { get; private set; }
+
+        /// <summary>
+        /// Bump texture map.
+        /// </summary>
+        public Texture MapBump { get; private set; }
 
         public Material(INode parent, string name)
         {
@@ -25,16 +63,11 @@ namespace Reality.ObjReader
             this.Kd = new Vec4();
             this.Ka = new Vec4();
             this.Ks = new Vec4();
+            this.Ns = 0.0f;
             this.MapKd = new Texture();
             this.MapKa = new Texture();
             this.MapKs = new Texture();
             this.MapBump = new Texture();
-        }
-
-        public void AddD(string[] tokens)
-        {
-            tokens = tokens.Skip(1).ToArray();
-            this.Kd[3] = ConvertToFloat(tokens[0]);
         }
 
         public void AddKd(string[] tokens)
@@ -53,6 +86,16 @@ namespace Reality.ObjReader
         {
             tokens = tokens.Skip(1).ToArray();
             this.Ks = ConvertToVec3(tokens) + 1.0f;
+        }
+
+        public void AddNs(string[] tokens)
+        {
+            this.Ns = ConvertToFloat(tokens[1]);
+        }
+
+        public void AddD(string[] tokens)
+        {
+            this.Kd[3] = ConvertToFloat(tokens[1]);
         }
 
         public void AddKdMap(string[] tokens)

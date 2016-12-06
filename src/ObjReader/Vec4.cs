@@ -4,8 +4,6 @@ namespace Reality.ObjReader
 {
     public class Vec4
     {
-        private float[] data { get; set; }
-
         public Vec4()
         {
             this.data = new float[4] { 0.0f, 0.0f, 0.0f, 0.0f };
@@ -47,5 +45,7 @@ namespace Reality.ObjReader
         {
             return new Vec4 (rhs[0], rhs[1], rhs[2], rhs[3]);
         }
+
+        private float[] data { get; set; }
     }
 }
