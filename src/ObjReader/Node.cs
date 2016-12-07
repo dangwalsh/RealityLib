@@ -61,16 +61,22 @@ namespace Reality.ObjReader
                 switch (indices.Length)
                 {
                     case 1:
-                        this.VertexIndex.Add(ConvertToInt(indices[0]) - 1);
+                        if (indices[0] != "")
+                            this.VertexIndex.Add(ConvertToInt(indices[0]) - 1);
                         break;
                     case 2:
-                        this.VertexIndex.Add(ConvertToInt(indices[0]) - 1);
-                        this.UVIndex.Add(ConvertToInt(indices[1]) - 1);
+                        if (indices[0] != "")
+                            this.VertexIndex.Add(ConvertToInt(indices[0]) - 1);
+                        if (indices[1] != "")
+                            this.UVIndex.Add(ConvertToInt(indices[1]) - 1);
                         break;
                     case 3:
-                        this.VertexIndex.Add(ConvertToInt(indices[0]) - 1);
-                        this.UVIndex.Add(ConvertToInt(indices[1]) - 1);
-                        this.NormalIndex.Add(ConvertToInt(indices[2]) - 1);
+                        if (indices[0] != "")
+                            this.VertexIndex.Add(ConvertToInt(indices[0]) - 1);
+                        if (indices[1] != "")
+                            this.UVIndex.Add(ConvertToInt(indices[1]) - 1);
+                        if (indices[2] != "")
+                            this.NormalIndex.Add(ConvertToInt(indices[2]) - 1);
                         break;
                     default:
                         throw new Exception("wrong number of indices");

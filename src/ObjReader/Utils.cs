@@ -59,7 +59,7 @@ namespace Reality.ObjReader
 
         public static string ConvertToString(string[] tokens)
         {
-            return string.Join(" ", tokens);
+            return string.Join(" ", tokens).Trim();
         }
 
         public static void CenterVertices(ref List<Vec3> vertices)

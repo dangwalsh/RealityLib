@@ -4,13 +4,13 @@ namespace Reality.ObjReader.Tests
 {
     public class ReaderTests
     {
-        const string filename = @"/Users/danielwalsh/git/github.com/dangwalsh/ObjReader/data/test.obj";
+        const string filename = @"c:\users\22791\desktop\untitled.obj";
 
         [Fact]
         public void GetNodes()
         {
             var count = Facade.ImportObjects(filename);
-            Assert.Equal(2, count);
+            Assert.Equal(1, count);
         }
 
         [Fact]
@@ -18,7 +18,7 @@ namespace Reality.ObjReader.Tests
         {
             var count = Facade.ImportObjects(filename);
             var verts = Facade.GetVertices();
-            Assert.Equal(96, verts.Length);
+            Assert.Equal(8, verts.Length);
         }
 
         [Fact]
@@ -26,37 +26,34 @@ namespace Reality.ObjReader.Tests
         {
             var count = Facade.ImportObjects(filename);
             var uvs = Facade.GetUVs();
-            Assert.Equal(96, uvs.Length);
+            Assert.Equal(0, uvs.Length);
         }
 
         [Theory]
         [InlineData(0)]
-        [InlineData(1)]
         public void GetVertexIndexOfObject(int index)
         {
             var count = Facade.ImportObjects(filename);
             var inds = Facade.GetVertexIndexOfObject(index);
-            Assert.Equal(36, inds.Length);
+            Assert.Equal(24, inds.Length);
         }
 
         [Theory]
         [InlineData(0)]
-        [InlineData(1)]
         public void GetNormalIndexOfObject(int index)
         {
             var count = Facade.ImportObjects(filename);
             var inds = Facade.GetNormalIndexOfObject(index);
-            Assert.Equal(36, inds.Length);
+            Assert.Equal(24, inds.Length);
         }
 
         [Theory]
         [InlineData(0)]
-        [InlineData(1)]
         public void GetUVIndexOfObject(int index)
         {
             var count = Facade.ImportObjects(filename);
             var inds = Facade.GetUVIndexOfObject(index);
-            Assert.Equal(36, inds.Length);
+            Assert.Equal(0, inds.Length);
         }
 
         [Theory]
@@ -64,7 +61,7 @@ namespace Reality.ObjReader.Tests
         public void GetDiffuseColorOfObject(int index)
         {
             var count = Facade.ImportObjects(filename);
-            var color = Facade.GetKdOfObject(index);
+            var color = Facade.GetColorOfChannelOfObject("Diffuse", index);
             Assert.Equal(0.5, color[0]);
         }
     }
