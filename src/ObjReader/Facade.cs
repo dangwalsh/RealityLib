@@ -27,6 +27,11 @@
             return context?.UVs.ToArray();
         }
 
+        public static Vec3 GetBounds()
+        {
+            return context?.Bounds.Magnitude;
+        }
+
         public static string GetNameOfObject(int index)
         {
             var child = context?.Children[index] as Node;

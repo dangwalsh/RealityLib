@@ -15,6 +15,7 @@ namespace Reality.ObjReader
         public virtual List<Vec2> UVs { get; private set; }
         public virtual List<Vec3> Normals { get; private set; }
         public virtual List<Material> Materials { get; private set; }
+        public virtual Bounds Bounds { get; private set; }
         public static Context GetNewContext
         {
             get { return new Context(); }
@@ -81,7 +82,7 @@ namespace Reality.ObjReader
 
         public virtual void Center()
         {
-            CenterVertices(ref vertices);
+            this.Bounds = CenterVertices(ref vertices);
         }
 
         public virtual void AddMaterialLibrary(string[] tokens)

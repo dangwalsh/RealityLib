@@ -30,14 +30,22 @@ namespace Reality.ObjReader
             }
         }
 
-        public static implicit operator float[] (Vec2 rhs)
-        {
-            return new float[] { rhs[0], rhs[1] };
-        }
-
         public static float[] operator +(Vec2 lhs, float rhs)
         {
             return new float[] { lhs[0], lhs[1], rhs };
+        }
+
+        public static Vec2 operator -(Vec2 lhs, Vec2 rhs)
+        {
+            return new Vec2(
+                lhs[0] - rhs[0], 
+                lhs[1] - rhs[1]
+                );
+        }
+
+        public static implicit operator float[] (Vec2 rhs)
+        {
+            return new float[] { rhs[0], rhs[1] };
         }
 
         public static implicit operator Vec2(float[] rhs)

@@ -41,6 +41,16 @@ namespace Reality.ObjReader
             return new float[]{lhs[0], lhs[1], lhs[2], lhs[3], rhs};
         }
 
+        public static Vec4 operator -(Vec4 lhs, Vec4 rhs)
+        {
+            return new Vec4(
+                lhs[0] - rhs[0], 
+                lhs[1] - rhs[1], 
+                lhs[2] - rhs[2], 
+                lhs[3] - rhs[3]
+                );
+        }
+
         public static implicit operator Vec4(float[] rhs)
         {
             return new Vec4 (rhs[0], rhs[1], rhs[2], rhs[3]);

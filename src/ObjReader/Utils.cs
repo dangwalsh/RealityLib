@@ -62,7 +62,7 @@ namespace Reality.ObjReader
             return string.Join(" ", tokens).Trim();
         }
 
-        public static void CenterVertices(ref List<Vec3> vertices)
+        public static Bounds CenterVertices(ref List<Vec3> vertices)
         {
             float max_X = -1 * float.MaxValue;
             float max_Y = -1 * float.MaxValue;
@@ -105,10 +105,27 @@ namespace Reality.ObjReader
                 float y = vertex[1];
                 float z = vertex[2];
 
-                vertex[0] = (mid_X < 0) ? (x - mid_X) : (x - mid_X);
-                vertex[1] = (mid_Y < 0) ? (y - mid_Y) : (y - mid_Y);
-                vertex[2] = (mid_Z < 0) ? (z - mid_Z) : (z - mid_Z);
+                //vertex[0] = (mid_X < 0) ? (x - mid_X) : (x - mid_X);
+                //vertex[1] = (mid_Y < 0) ? (y - mid_Y) : (y - mid_Y);
+                //vertex[2] = (mid_Z < 0) ? (z - mid_Z) : (z - mid_Z);
+                vertex[0] = x - mid_X;
+                vertex[1] = y - mid_Y;
+                vertex[2] = z - mid_Z;
             }
+
+            var max = new Vec3(
+                max_X - mid_X,
+                max_Y - mid_Y,
+                max_Z - mid_Z
+                );
+
+            var min = new Vec3(
+                min_X - mid_X,
+                min_Y - mid_Y,
+                min_Z - mid_Z
+                );
+
+            return new Bounds(min, max);
         }
 
         public static float GetUnitVector(List<Vec3> vertices)
